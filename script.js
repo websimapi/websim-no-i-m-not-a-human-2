@@ -24,27 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function positionDripOverlay() {
-        const overlay = document.getElementById('drip-overlay');
+    function updateBackgroundDrip() {
+        const bg = document.querySelector('.background-drip');
         const fig = document.querySelector('.figure-container');
-        if (!overlay || !fig) return;
-        const rect = fig.getBoundingClientRect();
-        const cutoffY = rect.top + rect.height * 0.85; // 85% down the figure
-        const vh = window.innerHeight;
-        const top = Math.max(0, Math.min(cutoffY, vh));
-        overlay.style.top = `${top}px`;
-        overlay.style.height = `${vh - top}px`;
+        if (!bg || !fig) return;
+        const r = fig.getBoundingClientRect();
+        const startY = Math.round(r.top + r.height * 0.85);
+        bg.style.clipPath = `inset(${startY}px 0 0 0)`;
     }
 
     // Initial adjustment
     adjustLayout();
-    positionDripOverlay();
+    updateBackgroundDrip();
 
     // Adjust on window resize
     window.addEventListener('resize', () => {
         adjustLayout();
-        positionDripOverlay();
+        updateBackgroundDrip();
     });
-
-    window.addEventListener('scroll', positionDripOverlay);
 });
