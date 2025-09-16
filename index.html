@@ -23,11 +23,18 @@
                     0 0 0 0 0
                     0 0 0 1 0" result="biasG"/>
                 <feComponentTransfer in="biasG" result="downOnly">
-                    <feFuncG type="linear" slope="0.5" intercept="0.55"/>
+                    <feFuncG type="linear" slope="0.5" intercept="0.55">
+                        <animate attributeName="intercept" values="0.5;0.62;0.54;0.6;0.52;0.5" dur="6s" repeatCount="indefinite"/>
+                    </feFuncG>
                 </feComponentTransfer>
-                <feDisplacementMap in="SourceGraphic" in2="downOnly" scale="90" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+                <feDisplacementMap in="SourceGraphic" in2="downOnly" scale="90" xChannelSelector="R" yChannelSelector="G" result="displaced">
+                    <animate attributeName="scale" values="60;125;85;110;70;60" dur="6s" repeatCount="indefinite"/>
+                </feDisplacementMap>
+                <feGaussianBlur in="displaced" stdDeviation="0.6" result="soft">
+                    <animate attributeName="stdDeviation" values="0.4;1.2;0.7;1.0;0.5;0.4" dur="6s" repeatCount="indefinite"/>
+                </feGaussianBlur>
                 <feMerge>
-                    <feMergeNode in="displaced"/>
+                    <feMergeNode in="soft"/>
                 </feMerge>
             </filter>
         </defs>
