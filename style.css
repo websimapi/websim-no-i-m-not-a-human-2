@@ -155,8 +155,8 @@ h1 {
     inset: 0;
     object-fit: contain;
     filter: url(#drip-displace);
-    mask-image: linear-gradient(to bottom, transparent 0%, transparent 75%, black 88%, black 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 75%, black 88%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 65%, black 85%, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 65%, black 85%, black 100%);
     pointer-events: none;
     z-index: 0;
 }

@@ -13,20 +13,19 @@
     <!-- Drip displacement filter -->
     <svg width="0" height="0" style="position:absolute">
         <defs>
-            <filter id="drip-displace" x="-20%" y="-10%" width="140%" height="160%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
-                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="noise">
-                    <animate attributeName="baseFrequency" values="0.009;0.014;0.011;0.009" dur="6s" repeatCount="indefinite"/>
+            <filter id="drip-displace" x="-40%" y="-20%" width="180%" height="240%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="3" seed="3" result="noise">
+                    <animate attributeName="baseFrequency" values="0.005;0.007;0.006;0.005" dur="7s" repeatCount="indefinite"/>
                 </feTurbulence>
                 <feColorMatrix in="noise" type="matrix" values="
-                    0 0 0 0 0
+                    0 0 0 0 0.5
                     0 1 0 0 0
                     0 0 0 0 0
-                    0 0 0 0 1" result="gOnly"/>
-                <feComponentTransfer in="gOnly" result="gPos">
-                    <feFuncG type="table" tableValues="0 0.25 0.5 0.75 1"/>
-                    <feFuncA type="discrete" tableValues="1"/>
+                    0 0 0 1 0" result="biasG"/>
+                <feComponentTransfer in="biasG" result="downOnly">
+                    <feFuncG type="linear" slope="0.5" intercept="0.55"/>
                 </feComponentTransfer>
-                <feDisplacementMap in="SourceGraphic" in2="gPos" scale="35" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+                <feDisplacementMap in="SourceGraphic" in2="downOnly" scale="90" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
                 <feMerge>
                     <feMergeNode in="displaced"/>
                 </feMerge>
