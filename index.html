@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NO, I'M NOT A HUMAN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Drip displacement filter -->
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <filter id="drip-displace" x="-20%" y="-10%" width="140%" height="160%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="noise">
+                    <animate attributeName="baseFrequency" values="0.009;0.014;0.011;0.009" dur="6s" repeatCount="indefinite"/>
+                </feTurbulence>
+                <feColorMatrix in="noise" type="matrix" values="
+                    0 0 0 0 0
+                    0 1 0 0 0
+                    0 0 0 0 0
+                    0 0 0 0 1" result="gOnly"/>
+                <feComponentTransfer in="gOnly" result="gPos">
+                    <feFuncG type="table" tableValues="0 0.25 0.5 0.75 1"/>
+                    <feFuncA type="discrete" tableValues="1"/>
+                </feComponentTransfer>
+                <feDisplacementMap in="SourceGraphic" in2="gPos" scale="35" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+                <feMerge>
+                    <feMergeNode in="displaced"/>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+    <div class="green-filter"></div>
+    <div id="app">
+        <header>
+            <h1>NO, I'M NOT A HUMAN</h1>
+            <a href="https://store.steampowered.com/app/3180070/No_Im_not_a_Human/" target="_blank" class="credits-btn">
+                CREDITS
+            </a>
+        </header>
+
+        <main class="content">
+            <div class="side-panel left-panel">
+                <div class="feature-box"><img src="eye_fearful.png" alt="Fearful eye"></div>
+                <div class="feature-box"><img src="eye_suspicious.png" alt="Suspicious eye"></div>
+                <div class="feature-box"><img src="eye_vacant.png" alt="Vacant eye"></div>
+                <div class="feature-box"><img src="eye_intense.png" alt="Intense eye"></div>
+                <div class="feature-box"><img src="eye_lifeless.png" alt="Lifeless eye"></div>
+            </div>
+
+            <div class="center-panel">
+                <div class="figure-wrapper">
+                    <div class="figure-container">
+                        <img src="humanoid_figure.png" alt="Distorted humanoid figure">
+                        <img src="humanoid_figure.png" alt="" aria-hidden="true" class="drip-layer">
+                    </div>
+                </div>
+                <div class="center-bottom-container">
+                    <nav class="menu">
+                        <button>New Game</button>
+                        <button>Settings</button>
+                        <button>Collection</button>
+                        <button>Quit</button>
+                    </nav>
+                    <div class="collectibles-container">
+                        <img src="collectible_card_1.png" alt="Collectible Card 1" class="card card1">
+                        <img src="collectible_card_2.png" alt="Collectible Card 2" class="card card2">
+                        <img src="collectible_card_3.png" alt="Collectible Card 3" class="card card3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-panel right-panel">
+                <div class="feature-box"><img src="mouth_grin.png" alt="Grinning mouth"></div>
+                <div class="feature-box"><img src="mouth_neutral.png" alt="Neutral mouth"></div>
+                <div class="feature-box"><img src="mouth_speech.png" alt="Mouth mid-speech"></div>
+                <div class="feature-box"><img src="mouth_tense.png" alt="Tense mouth"></div>
+                <div class="feature-box"><img src="mouth_open.png" alt="Open mouth"></div>
+            </div>
+        </main>
+
+        <footer>
+            
+        </footer>
+    </div>
+    <script type="module" src="script.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
