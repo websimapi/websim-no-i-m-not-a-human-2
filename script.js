@@ -24,9 +24,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function positionDripOverlay() {
+        const overlay = document.getElementById('drip-overlay');
+        const fig = document.querySelector('.figure-container');
+        if (!overlay || !fig) return;
+        const rect = fig.getBoundingClientRect();
+        const cutoffY = rect.top + rect.height * 0.85; // 85% down the figure
+        const vh = window.innerHeight;
+        const top = Math.max(0, Math.min(cutoffY, vh));
+        overlay.style.top = `${top}px`;
+        overlay.style.height = `${vh - top}px`;
+    }
+
     // Initial adjustment
     adjustLayout();
+    positionDripOverlay();
 
     // Adjust on window resize
-    window.addEventListener('resize', adjustLayout);
+    window.addEventListener('resize', () => {
+        adjustLayout();
+        positionDripOverlay();
+    });
+
+    window.addEventListener('scroll', positionDripOverlay);
 });
